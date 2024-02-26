@@ -1,16 +1,59 @@
-name: Output Runner Context
+name: Output Job and GitHub Contexts
 
-on: [push]
+on: push
 
 jobs:
-  output-runner-context:
+  output-context:
     runs-on: ubuntu-latest
     steps:
-      - name: Output Runner Context Information
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Output Job Context
         run: |
-          echo "Runner Name: ${{ runner.name }}"
-          echo "Runner OS: ${{ runner.os }}"
-          echo "Runner Architecture: ${{ runner.arch }}"
-          echo "Runner Temp Directory: ${{ runner.temp }}"
-          echo "Runner Tool Cache: ${{ runner.tool_cache }}"
-          echo "Runner Debug: ${{ runner.debug }}"
+          echo "Job Container ID: ${{ job.container.id }}"
+          echo "Job Container Network: ${{ job.container.network }}"
+          # 注意: 对于 job.services，需要具体的服务ID来访问，这里只是示例
+          echo "Job Services Container ID: ${{ job.services['your_service_id'].id }}"
+          echo "Job Services Container Network: ${{ job.services['your_service_id'].network }}"
+          # 示例展示端口，需要具体服务和端口
+          echo "Job Status: ${{ job.status }}"
+
+      - name: Output GitHub Context
+        run: |
+          echo "GitHub Action: ${{ github.action }}"
+          echo "GitHub Action Path: ${{ github.action_path }}"
+          echo "GitHub Action Ref: ${{ github.action_ref }}"
+          echo "GitHub Action Repository: ${{ github.action_repository }}"
+          echo "GitHub Action Status: ${{ github.action_status }}"
+          echo "GitHub Actor: ${{ github.actor }}"
+          echo "GitHub Actor ID: ${{ github.actor_id }}"
+          echo "GitHub API URL: ${{ github.api_url }}"
+          echo "GitHub Base Ref: ${{ github.base_ref }}"
+          echo "GitHub Environment: ${{ github.env }}"
+          echo "GitHub Event Name: ${{ github.event_name }}"
+          echo "GitHub Event Path: ${{ github.event_path }}"
+          echo "GitHub GraphQL URL: ${{ github.graphql_url }}"
+          echo "GitHub Head Ref: ${{ github.head_ref }}"
+          echo "GitHub Job: ${{ github.job }}"
+          echo "GitHub Path: ${{ github.path }}"
+          echo "GitHub Ref: ${{ github.ref }}"
+          echo "GitHub Ref Name: ${{ github.ref_name }}"
+          echo "GitHub Ref Protected: ${{ github.ref_protected }}"
+          echo "GitHub Ref Type: ${{ github.ref_type }}"
+          echo "GitHub Repository: ${{ github.repository }}"
+          echo "GitHub Repository ID: ${{ github.repository_id }}"
+          echo "GitHub Repository Owner: ${{ github.repository_owner }}"
+          echo "GitHub Repository Owner ID: ${{ github.repository_owner_id }}"
+          echo "GitHub Repository URL: ${{ github.repositoryUrl }}"
+          echo "GitHub Run ID: ${{ github.run_id }}"
+          echo "GitHub Run Number: ${{ github.run_number }}"
+          echo "GitHub Run Attempt: ${{ github.run_attempt }}"
+          echo "GitHub Server URL: ${{ github.server_url }}"
+          echo "GitHub SHA: ${{ github.sha }}"
+          # 注意: github.token通常不应该直接输出
+          echo "GitHub Triggering Actor: ${{ github.triggering_actor }}"
+          echo "GitHub Workflow: ${{ github.workflow }}"
+          echo "GitHub Workflow Ref: ${{ github.workflow_ref }}"
+          echo "GitHub Workflow SHA: ${{ github.workflow_sha }}"
+          echo "GitHub Workspace: ${{ github.workspace }}"
