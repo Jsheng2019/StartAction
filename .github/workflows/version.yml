@@ -1,0 +1,14 @@
+name: version
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'service/**'
+jobs:
+  output-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mr_push
+        run: |
+          echo "test mr push"
