@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: mr_push
         run: |
-          echo "test mr push"
+          echo "test mr push 1"
