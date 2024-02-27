@@ -1,4 +1,4 @@
-name: version
+name: mr
 on: 
   push:
     branches:
