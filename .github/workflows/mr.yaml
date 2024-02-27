@@ -1,0 +1,14 @@
+name: version
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'service/**'
+jobs:
+  mr_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mr_push
+        run: |
+          echo "mr_pipeline"
