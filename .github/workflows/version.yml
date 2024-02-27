@@ -6,9 +6,9 @@ on:
     paths:
       - 'service/**'
 jobs:
-  output-context:
+  version_pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: mr_push
         run: |
-          echo "test mr push 1"
+          echo "version_pipeline"
